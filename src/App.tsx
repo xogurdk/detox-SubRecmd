@@ -389,35 +389,36 @@ export default function App() {
   const activeTopicOpinions = opinions.filter((op) => op.topicId === (currentTopic?.id || ""));
 
   return (
-    <div className="min-h-screen bg-[#FCFBF8] text-slate-800 font-sans flex flex-col antialiased">
+    <div className="min-h-screen bg-[#FEF9EF] text-slate-800 font-sans flex flex-col antialiased">
       {/* Top Professional Navigation Bar */}
-      <header className="bg-white border-b border-[#E6DEC4] sticky top-0 z-50 px-6 py-4 shadow-xs">
+      <header className="bg-[#FFD93D] border-b-4 border-[#FF8400] sticky top-0 z-50 px-6 py-4 shadow-md shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-sm">
-              <BookOpen className="w-5 h-5" />
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-3 border-2 border-[#FF8400]">
+              <span className="text-2xl">📖</span>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                고전독서 토론 도우미
-                <span className="text-xs font-normal bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
-                  초등 학습용
+              <h1 className="text-2xl font-black text-[#6C3428] tracking-tight flex items-center gap-2">
+                고전 꼬마 친구
+                <span className="text-xs font-bold bg-[#FF8400] text-white px-2.5 py-1 rounded-full shadow-xs">
+                  Classic Buddy
                 </span>
               </h1>
-              <p className="text-xs text-slate-500">교사·어린이가 함께 만드는 생각의 정원</p>
+              <p className="text-xs font-bold text-[#6C3428]/80">교사·어린이가 함께 만드는 생각의 정원</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400 mr-2 font-mono hidden lg:inline">AI Engine: gemini-3.5-flash</span>
-            <div className="h-6 w-px bg-slate-200 mr-2 hidden lg:inline"></div>
+          <div className="flex items-center gap-3">
+            <div className="bg-white/50 px-4 py-2 rounded-full text-xs font-bold text-[#6C3428] border border-[#FF8400]/30 hidden md:block">
+              성능 비서: gemini-3.5-flash
+            </div>
             <button
               onClick={() => {
                 if (viewMode === "preset") {
                   handleSelectPreset(selectedPresetIndex);
                 }
               }}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 duration-150"
+              className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#FF8400] hover:bg-[#e07500] active:scale-95 duration-150 rounded-full shadow-md cursor-pointer"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               수업 초기화
@@ -431,25 +432,25 @@ export default function App() {
         
         {/* LEFT COLUMN: Input setup & Literature Selection (4 Columns) */}
         <section className="lg:col-span-4 flex flex-col gap-6">
-          <div className="bg-white rounded-3xl border border-[#E9E4D4] p-5 shadow-sm flex flex-col gap-5">
+          <div className="bg-white rounded-2xl border-b-8 border-r-8 border-[#E0E0E0] border-2 p-5 flex flex-col gap-5">
             <div className="flex items-center justify-between border-b border-rose-50/80 pb-3">
-              <h2 className="text-md font-bold text-slate-900 flex items-center gap-2">
-                <BookMarked className="w-4 h-4 text-orange-500" />
+              <h2 className="text-md font-black text-[#6C3428] flex items-center gap-2">
+                <span className="text-lg">📚</span>
                 오늘 학습할 고전 선택
               </h2>
               <div className="flex bg-slate-100 rounded-lg p-0.5 text-xs">
                 <button
                   onClick={() => setViewMode('preset')}
-                  className={`px-3 py-1 rounded-md transition-all duration-200 font-medium ${
-                    viewMode === 'preset' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                  className={`px-3 py-1 rounded-md transition-all duration-200 font-bold ${
+                    viewMode === 'preset' ? 'bg-[#FFD93D] text-[#6C3428] shadow-xs' : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   명작 프리셋
                 </button>
                 <button
                   onClick={() => setViewMode('manual')}
-                  className={`px-3 py-1 rounded-md transition-all duration-200 font-medium ${
-                    viewMode === 'manual' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                  className={`px-3 py-1 rounded-md transition-all duration-200 font-bold ${
+                    viewMode === 'manual' ? 'bg-[#FFD93D] text-[#6C3428] shadow-xs' : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   직접 구성 (PDF)
@@ -460,24 +461,24 @@ export default function App() {
             {/* PRESET BOOK MODE */}
             {viewMode === 'preset' && (
               <div className="flex flex-col gap-3">
-                <label className="text-xs font-semibold text-slate-500">교과서 수록 대표 고전 목록</label>
-                <div className="grid grid-cols-1 gap-2 max-h-56 overflow-y-auto pr-1">
+                <label className="text-xs font-bold text-[#6C3428]/90">교과서 수록 대표 고전 목록</label>
+                <div className="grid grid-cols-1 gap-2 max-h-56 overflow-y-auto pr-1 custom-scrollbar">
                   {PRESET_BOOKS.map((book, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSelectPreset(idx)}
-                      className={`text-left p-3 rounded-xl border text-xs transition-all duration-150 relative ${
+                      className={`text-left p-3.5 rounded-2xl border-2 text-xs transition-all duration-150 relative ${
                         selectedPresetIndex === idx
-                          ? 'border-orange-500 bg-orange-50/70 text-orange-950 font-medium shadow-2xs'
-                          : 'border-[#EDEAE0] bg-white hover:bg-slate-50/50 text-slate-700'
+                          ? 'border-[#FF8400] bg-[#FFFBF2] text-[#6C3428] font-bold shadow-xs'
+                          : 'border-slate-200 bg-white hover:bg-[#FEF9EF]/50 text-slate-700'
                       }`}
                     >
-                      <div className="font-bold flex items-center justify-between">
+                      <div className="font-extrabold flex items-center justify-between text-[#6C3428]">
                         <span>{book.title}</span>
-                        {selectedPresetIndex === idx && <Check className="w-3.5 h-3.5 text-orange-600" />}
+                        {selectedPresetIndex === idx && <span className="text-[#FF8400] font-bold text-sm">★</span>}
                       </div>
                       <div className="text-[11px] text-slate-500 mt-1 lines-clamp-1">{book.description}</div>
-                      <div className="text-[10px] text-orange-800 mt-1.5 font-semibold bg-white/60 inline-block px-1.5 py-0.5 rounded-sm">
+                      <div className="text-[10px] text-white mt-1.5 font-bold bg-[#FF8400] inline-block px-2.5 py-0.5 rounded-full">
                         쪽수 설정: {book.pages}쪽
                       </div>
                     </button>
@@ -485,11 +486,11 @@ export default function App() {
                 </div>
 
                 {/* Mini Box showing Excerpt of preset */}
-                <div className="bg-slate-50 border border-[#ECE9DF] p-3 rounded-xl">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                <div className="bg-[#FFFCEF] border-2 border-[#FFD93D] p-3 rounded-2xl">
+                  <span className="text-[10px] font-black text-[#FF8400] uppercase tracking-wider block mb-1">
                     선택된 작품 핵심 본문 발췌
                   </span>
-                  <p className="text-xs font-serif text-slate-600 leading-relaxed bg-white border border-[#EBE8DD] p-2.5 rounded-lg max-h-28 overflow-y-auto">
+                  <p className="text-xs font-serif text-slate-600 leading-relaxed bg-white border border-[#FFD93D]/30 p-2.5 rounded-xl max-h-28 overflow-y-auto custom-scrollbar">
                     {PRESET_BOOKS[selectedPresetIndex].excerpt}
                   </p>
                 </div>
@@ -501,20 +502,20 @@ export default function App() {
               <div className="flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-2">
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-slate-500">도서명 <span className="text-red-500">*</span></label>
+                    <label className="text-xs font-bold text-[#6C3428]/90">도서명 <span className="text-red-500">*</span></label>
                     <input
                       type="text"
-                      className="text-xs border border-[#E4DFD0] rounded-xl p-2.5 bg-[#FAF9F5] focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                      className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-[#FEF9EF]/40 focus:bg-white focus:outline-none focus:border-[#FF8400]"
                       placeholder="예: 별주부전"
                       value={customBook.title}
                       onChange={(e) => setCustomBook({ ...customBook, title: e.target.value })}
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-slate-500">지은이/저자</label>
+                    <label className="text-xs font-bold text-[#6C3428]/90">지은이/저자</label>
                     <input
                       type="text"
-                      className="text-xs border border-[#E4DFD0] rounded-xl p-2.5 bg-[#FAF9F5] focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                      className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-[#FEF9EF]/40 focus:bg-white focus:outline-none focus:border-[#FF8400]"
                       placeholder="예: 미상"
                       value={customBook.author}
                       onChange={(e) => setCustomBook({ ...customBook, author: e.target.value })}
@@ -523,10 +524,10 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-slate-500">오늘 활동할 쪽수 <span className="text-red-500">*</span></label>
+                  <label className="text-xs font-bold text-[#6C3428]/90">오늘 활동할 쪽수 <span className="text-red-500">*</span></label>
                   <input
                     type="text"
-                    className="text-xs border border-[#E4DFD0] rounded-xl p-2.5 bg-[#FAF9F5] focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-[#FEF9EF]/40 focus:bg-white focus:outline-none focus:border-[#FF8400]"
                     placeholder="예: 12-18쪽"
                     value={customBook.pages}
                     onChange={(e) => setCustomBook({ ...customBook, pages: e.target.value })}
@@ -535,17 +536,17 @@ export default function App() {
 
                 {/* PDF Drag & Drop Sector */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-slate-500">독서 자료 PDF 업로드 (선택)</label>
+                  <label className="text-xs font-bold text-[#6C3428]/90">독서 자료 PDF 업로드 (선택)</label>
                   <div
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
-                    className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all duration-150 ${
+                    className={`border-2 border-dashed rounded-2xl p-5 text-center cursor-pointer transition-all duration-150 ${
                       isDragging
-                        ? 'border-orange-500 bg-orange-50/40'
+                        ? 'border-[#FF8400] bg-[#FFFBF2]'
                         : pdfFileName
-                        ? 'border-emerald-500 bg-emerald-50/20'
-                        : 'border-[#EDE8D8] bg-[#FCFBF9] hover:bg-slate-50'
+                        ? 'border-[#6BCB77] bg-[#F4FAF5]'
+                        : 'border-[#FFD93D] bg-white hover:bg-[#FEF9EF]/30'
                     }`}
                   >
                     <input
@@ -556,7 +557,7 @@ export default function App() {
                       id="pdf-upload-input"
                     />
                     <label htmlFor="pdf-upload-input" className="cursor-pointer flex flex-col items-center gap-1.5">
-                      <Upload className={`w-6 h-6 ${pdfFileName ? 'text-emerald-500 animate-bounce' : 'text-slate-400'}`} />
+                      <Upload className={`w-6 h-6 ${pdfFileName ? 'text-[#6BCB77] animate-bounce' : 'text-[#FF8400]'}`} />
                       {pdfFileName ? (
                         <div>
                           <span className="text-xs font-bold text-slate-800 block truncate max-w-[200px] mx-auto">
@@ -566,7 +567,7 @@ export default function App() {
                         </div>
                       ) : (
                         <div>
-                          <span className="text-xs font-semibold text-slate-700 block">PDF 파일을 드래그하여 놓으세요</span>
+                          <span className="text-xs font-bold text-slate-700 block">PDF 파일을 드래그하여 놓으세요</span>
                           <span className="text-[10px] text-slate-400 block mt-0.5">또는 탐색기에서 선택하기</span>
                         </div>
                       )}
@@ -576,12 +577,12 @@ export default function App() {
 
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-slate-500">혹은 직접 텍스트 붙여넣기</label>
+                    <label className="text-xs font-bold text-[#6C3428]/90">혹은 직접 텍스트 붙여넣기</label>
                     <span className="text-[10px] text-slate-400">PDF가 없을 때 활용 가능</span>
                   </div>
                   <textarea
                     rows={4}
-                    className="text-xs border border-[#E4DFD0] rounded-xl p-2.5 bg-[#FAF9F5] focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-[#FEF9EF]/40 focus:bg-white focus:outline-none focus:border-[#FF8400]"
                     placeholder="오늘 독서할 단락이나 교과서 텍스트 본문 단락을 여기에 복사해 넣어보세요."
                     value={customBook.textData}
                     onChange={(e) => setCustomBook({ ...customBook, textData: e.target.value })}
@@ -592,8 +593,8 @@ export default function App() {
 
             {/* ERROR BOUNDARY DISPLAY */}
             {errorText && (
-              <div className="bg-rose-50 border border-rose-200 text-rose-800 p-3 rounded-xl flex items-start gap-2 text-xs">
-                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-600" />
+              <div className="bg-rose-50 border-2 border-[#FF6B6B] text-[#FF6B6B] p-3.5 rounded-xl flex items-start gap-2 text-xs font-bold">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-[#FF6B6B]" />
                 <p className="leading-snug">{errorText}</p>
               </div>
             )}
@@ -602,10 +603,10 @@ export default function App() {
             <button
               onClick={handleAnalyzeBook}
               disabled={loading}
-              className={`w-full py-3.5 px-4 rounded-2xl font-bold text-sm tracking-tight text-white flex items-center justify-center gap-2 shadow-xs transition-all duration-150 ${
+              className={`w-full py-4 px-4 rounded-2xl font-black text-sm tracking-tight text-white flex items-center justify-center gap-2 shadow-lg transition-all duration-150 active:scale-98 cursor-pointer ${
                 loading
-                  ? 'bg-slate-400 cursor-not-allowed'
-                  : 'bg-slate-900 hover:bg-orange-600 cursor-pointer hover:shadow-md'
+                  ? 'bg-slate-400 cursor-not-allowed shadow-none'
+                  : 'bg-[#FF8400] hover:bg-[#e07500] border-b-4 border-[#6C3428]'
               }`}
             >
               <Sparkles className="w-4 h-4" />
@@ -614,16 +615,16 @@ export default function App() {
           </div>
 
           {/* Quick Classroom Guide Card */}
-          <div className="bg-amber-50/50 border border-amber-200/50 rounded-3xl p-5 shadow-2xs flex flex-col gap-3">
-            <h3 className="text-xs font-bold text-amber-800 uppercase tracking-widest flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5" />
+          <div className="bg-[#FFFBF2] border-[#6BCB77] border-2 rounded-3xl p-5 shadow-sm flex flex-col gap-3">
+            <h3 className="text-xs font-black text-[#6C3428] uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-sm">🧭</span>
               활동 가이드
             </h3>
-            <ol className="text-xs text-slate-600 space-y-2 list-decimal pl-4 leading-relaxed">
+            <ol className="text-xs text-slate-700 space-y-2.5 list-decimal pl-4 leading-relaxed font-medium">
               <li><strong>도서 선정:</strong> 왼쪽 위에 준비된 한국 대표 5대 아동 고전이나 개개인의 PDF/텍스트를 입력하세요.</li>
-              <li><strong>줄거리 숙지:</strong> 요약본을 화면에 띄우고 귀여운 <span className="font-bold">성우 목소리(TTS)</span>로 다 같이 청취해봅니다.</li>
-              <li><strong>꼬리물기 대화:</strong> 3가지 맞춤 딜레마 주제 중 맘에 드는 카드를 골라 <span className="text-amber-900 font-semibold">'교실 실시간 토론판'</span>을 활성화하세요.</li>
-              <li><strong>생각 수집:</strong> 어린이들의 이름과 의견을 등록한 후, 최종 <span className="font-bold underline text-amber-900">Gemini 총평</span>을 받아 학급 우수 토론으로 마무리합니다!</li>
+              <li><strong>줄거리 숙지:</strong> 요약본을 화면에 띄우고 귀여운 <span className="font-bold text-[#FF8400]">성우 목소리(TTS)</span>로 다 같이 청취해봅니다.</li>
+              <li><strong>꼬리물기 대화:</strong> 3가지 맞춤 딜레마 주제 중 맘에 드는 카드를 골라 <span className="text-[#6C3428] font-black underline">'교실 실시간 토론판'</span>을 활성화하세요.</li>
+              <li><strong>생각 수집:</strong> 어린이들의 이름과 의견을 등록한 후, 최종 <span className="font-bold underline text-[#6C3428]">Gemini 총평</span>을 받아 학급 우수 토론으로 마무리합니다!</li>
             </ol>
           </div>
         </section>
@@ -637,15 +638,15 @@ export default function App() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                className="bg-white rounded-3xl border border-[#E9E4D4] p-10 shadow-sm flex flex-col items-center justify-center min-h-[500px] text-center"
+                className="bg-white rounded-3xl border-2 border-slate-300 shadow-md border-b-8 border-r-8 border-slate-200 p-10 flex flex-col items-center justify-center min-h-[500px] text-center"
               >
                 <div className="relative w-16 h-16 mb-6">
                   <div className="absolute inset-0 rounded-full border-4 border-slate-100"></div>
-                  <div className="absolute inset-0 rounded-full border-4 border-t-orange-500 animate-spin"></div>
-                  <BookOpen className="w-6 h-6 text-orange-500 absolute inset-0 m-auto animate-pulse" />
+                  <div className="absolute inset-0 rounded-full border-4 border-t-[#FF8400] animate-spin"></div>
+                  <BookOpen className="w-6 h-6 text-[#FF8400] absolute inset-0 m-auto animate-pulse" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-black text-[#6C3428] mb-2">
                   책장을 넘기며 생각하는 기단을 조율하고 있어요!
                 </h3>
                 <p className="text-xs text-slate-500 mb-6 max-w-sm">
@@ -653,8 +654,8 @@ export default function App() {
                 </p>
 
                 {/* Pedagogy Milestone animation box */}
-                <div className="bg-slate-50 border border-[#ECE8D9] rounded-2xl p-4 py-5 max-w-md w-full">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                <div className="bg-[#FFFCEF] border-2 border-[#FFD93D] rounded-2xl p-4 py-5 max-w-sm w-full">
+                  <div className="text-[10px] font-black text-[#FF8400] uppercase tracking-widest mb-1.5">
                     현재 단계
                   </div>
                   <AnimatePresence mode="wait">
@@ -663,7 +664,7 @@ export default function App() {
                       initial={{ y: 10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -10, opacity: 0 }}
-                      className="text-xs font-semibold text-slate-800 leading-relaxed min-h-8"
+                      className="text-xs font-bold text-[#6C3428] leading-relaxed min-h-8"
                     >
                       {LOADING_STEPS[loadingStep]}
                     </motion.p>
@@ -673,7 +674,7 @@ export default function App() {
                       <div
                         key={i}
                         className={`h-1.5 rounded-full transition-all duration-300 ${
-                          loadingStep === i ? 'w-4 bg-orange-500' : 'w-1.5 bg-slate-200'
+                          loadingStep === i ? 'w-4 bg-[#FF8400]' : 'w-1.5 bg-slate-200'
                         }`}
                       />
                     ))}
@@ -688,35 +689,35 @@ export default function App() {
                 className="flex flex-col gap-6"
               >
                 {/* Book Header Segment */}
-                <div className="bg-slate-950 text-white rounded-3xl p-6 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
-                  <div className="absolute right-0 bottom-0 opacity-15 text-white/5 pointer-events-none transform translate-y-1/4 translate-x-1/10 font-serif text-9xl">
-                    Classic
+                <div className="bg-[#FFFBF2] text-slate-800 rounded-3xl p-6 shadow-sm border-2 border-[#FF8400] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
+                  <div className="absolute right-0 bottom-0 opacity-5 text-[#FF8400] pointer-events-none transform translate-y-1/4 translate-x-1/10 font-serif text-9xl">
+                    CLASSIC
                   </div>
                   <div className="z-10 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center">
-                      <BookOpen className="w-6 h-6 text-orange-400" />
+                    <div className="w-12 h-12 bg-[#FFD93D] rounded-2xl border-2 border-[#FF8400] flex items-center justify-center shadow-md">
+                      <span className="text-2xl">📚</span>
                     </div>
                     <div>
-                      <div className="text-[10px] font-semibold tracking-wider text-orange-300 uppercase">
+                      <div className="text-[10px] font-black tracking-wider text-[#FF8400] uppercase">
                         현재 수업 보드
                       </div>
-                      <h2 className="text-lg md:text-xl font-bold font-serif text-white">
+                      <h2 className="text-lg md:text-xl font-black font-serif text-[#6C3428]">
                         {viewMode === "preset" ? PRESET_BOOKS[selectedPresetIndex].title : customBook.title}
                       </h2>
-                      <div className="text-xs text-slate-300 mt-1">
-                        저자: {viewMode === "preset" ? PRESET_BOOKS[selectedPresetIndex].author : customBook.author || "미상"} &bull; 읽은 분량: <span className="font-semibold text-orange-200">{viewMode === "preset" ? PRESET_BOOKS[selectedPresetIndex].pages : customBook.pages}쪽</span>
+                      <div className="text-xs text-[#2C3333] mt-1 font-medium">
+                        저자: {viewMode === "preset" ? PRESET_BOOKS[selectedPresetIndex].author : customBook.author || "미상"} &bull; 읽은 분량: <span className="font-bold text-white bg-[#FF8400] px-3 py-0.5 rounded-full ml-1">{viewMode === "preset" ? PRESET_BOOKS[selectedPresetIndex].pages : customBook.pages}쪽</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Tab Selector Buttons */}
-                  <div className="flex bg-white/10 rounded-xl p-1 z-10 w-full md:w-auto self-end md:self-auto">
+                  <div className="flex bg-[#FEF9EF] border-2 border-[#FFD93D] rounded-2xl p-1 z-10 w-full md:w-auto self-end md:self-auto shadow-sm">
                     <button
                       onClick={() => setActiveTab('summary')}
-                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-150 ${
+                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-150 cursor-pointer ${
                         activeTab === 'summary'
-                          ? 'bg-white text-slate-900 shadow-sm'
-                          : 'text-slate-300 hover:text-white hover:bg-white/5'
+                          ? 'bg-[#FFD93D] text-[#6C3428] shadow-xs'
+                          : 'text-slate-500 hover:text-[#6C3428] hover:bg-slate-100'
                       }`}
                     >
                       <FileText className="w-3.5 h-3.5" />
@@ -724,10 +725,10 @@ export default function App() {
                     </button>
                     <button
                       onClick={() => setActiveTab('topics')}
-                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-150 ${
+                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-150 cursor-pointer ${
                         activeTab === 'topics'
-                          ? 'bg-white text-slate-900 shadow-sm'
-                          : 'text-slate-300 hover:text-white hover:bg-white/5'
+                          ? 'bg-[#FFD93D] text-[#6C3428] shadow-xs'
+                          : 'text-slate-500 hover:text-[#6C3428] hover:bg-slate-100'
                       }`}
                     >
                       <Users className="w-3.5 h-3.5 animate-pulse" />
@@ -744,35 +745,35 @@ export default function App() {
                     className="flex flex-col gap-6"
                   >
                     {/* Visual 1000자 Book summary segment */}
-                    <div className="bg-white rounded-3xl border border-[#E9E4D4] p-6 shadow-sm relative">
-                      <div className="flex items-center justify-between mb-4 border-b border-[#ECE8D7] pb-3">
+                    <div className="bg-white rounded-2xl border-2 border-[#FFD93D] p-6 shadow-sm relative">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 border-b-2 border-slate-100 pb-3">
                         <div className="flex items-center gap-2">
-                          <span className="w-2 h-5 bg-orange-500 rounded-full"></span>
-                          <h3 className="text-md font-bold text-slate-900">오늘 파트 1000자 핵심 요약</h3>
+                          <span className="w-2.5 h-6 bg-[#FF8400] rounded-full"></span>
+                          <h3 className="text-md font-black text-[#6C3428]">오늘 배울 내용 요약</h3>
                         </div>
                         <button
                           onClick={() => handleSpeak(analysisResult.summary)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-xl border transition-all duration-150 ${
+                          className={`flex items-center gap-1.5 px-4 py-2 text-xs font-black rounded-full border-2 transition-all duration-150 cursor-pointer ${
                             isPlayingText === analysisResult.summary
-                              ? 'bg-orange-50 text-orange-600 border-orange-200'
-                              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-950'
+                              ? 'bg-[#FF8400] text-white border-[#FF8400] shadow-md'
+                              : 'bg-white text-[#FF8400] border-[#FF8400] hover:bg-[#FEF9EF]'
                           }`}
                         >
                           <Volume2 className={`w-3.5 h-3.5 ${isPlayingText === analysisResult.summary ? 'animate-bounce' : ''}`} />
-                          {isPlayingText === analysisResult.summary ? "다같이 듣는 중 (정지)" : "구연동화 TTS 낭독"}
+                          {isPlayingText === analysisResult.summary ? "다같이 듣는 중 (정지)" : "구연동화 신나는 목소리 낭독"}
                         </button>
                       </div>
 
                       {/* Parchment-style display sheet */}
-                      <div className="bg-[#FAF8F3] border border-[#EDEAE1] rounded-2xl p-6 relative">
-                        <div className="absolute right-4 top-4 text-slate-300 opacity-60">
-                          <Quote className="w-8 h-8" />
+                      <div className="bg-[#FFFCEF] border-2 border-[#FFD93D]/60 rounded-2xl p-6 relative shadow-inner">
+                        <div className="absolute right-4 top-4 text-[#FF8400]/20 pointer-events-none">
+                          <Quote className="w-10 h-10" />
                         </div>
-                        <p className="text-sm md:text-base font-serif text-slate-800 leading-relaxed text-justify indent-4 whitespace-pre-line select-text">
+                        <p className="text-sm md:text-base font-serif text-slate-800 leading-relaxed text-left whitespace-pre-line select-text">
                           {analysisResult.summary}
                         </p>
-                        <div className="text-right mt-4 text-[11px] text-slate-400 font-serif">
-                          &mdash; 소리 내어 마음에 정갈하게 담아 보아요
+                        <div className="text-right mt-4 text-[11px] text-[#FF8400] font-bold">
+                          &mdash; 소리 내어 마음에 정갈하게 담아 보아요 ★
                         </div>
                       </div>
                     </div>
@@ -781,11 +782,11 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       
                       {/* Interactive Vocabulary Lens Card */}
-                      <div className="bg-white rounded-3xl border border-[#E9E4D4] p-5 shadow-sm">
-                        <div className="flex items-center gap-2 mb-4 border-b border-[#ECE8D7] pb-3">
-                          <Languages className="w-4 h-4 text-orange-500" />
-                          <h3 className="text-sm font-bold text-slate-900">독서 어휘 돋보기</h3>
-                          <span className="text-[10px] text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full ml-auto font-medium">초등 어휘력 쑥쑥</span>
+                      <div className="bg-white rounded-2xl border-2 border-[#6BCB77] p-5 shadow-sm">
+                        <div className="flex items-center gap-2 mb-4 border-b-2 border-slate-100 pb-3">
+                          <span className="text-lg">🔎</span>
+                          <h3 className="text-sm font-black text-[#6C3428]">독서 어휘 돋보기</h3>
+                          <span className="text-[10px] text-white bg-[#6BCB77] px-2.5 py-0.5 rounded-full ml-auto font-black">초등 어휘력 쑥쑥</span>
                         </div>
 
                         <div className="flex flex-col gap-3">
@@ -793,23 +794,23 @@ export default function App() {
                             analysisResult.vocab.map((term, idx) => (
                               <div
                                 key={idx}
-                                className="bg-[#FBFBFA] border border-[#EEECE6] hover:border-orange-200 p-4 rounded-2xl transition-all duration-150 hover:shadow-2xs group"
+                                className="bg-[#FFFCEF]/50 border-2 border-slate-100 hover:border-[#6BCB77] p-4 rounded-2xl transition-all duration-150 hover:shadow-xs group"
                               >
                                 <div className="flex items-baseline justify-between mb-1">
-                                  <h4 className="text-sm font-extrabold text-slate-900 group-hover:text-orange-600 transition-colors">
+                                  <h4 className="text-sm font-black text-[#6C3428] group-hover:text-[#6BCB77] transition-colors">
                                     {term.word}
                                   </h4>
                                   <button
                                     onClick={() => handleSpeak(`${term.word}. 뜻: ${term.meaning}`)}
-                                    className="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-slate-600 transition-all"
+                                    className="opacity-0 group-hover:opacity-100 p-1 text-[#FF8400] hover:scale-110 transition-all cursor-pointer"
                                   >
                                     <Volume2 className="w-3.5 h-3.5" />
                                   </button>
                                 </div>
-                                <p className="text-xs text-rose-950 leading-relaxed font-medium bg-rose-50/50 px-2 py-1.5 rounded-lg mb-2">
+                                <p className="text-xs text-[#6C3428] leading-relaxed font-bold bg-[#E8F9FD] px-3 py-1.5 rounded-xl mb-2">
                                   뜻풀이: {term.meaning}
                                 </p>
-                                <div className="text-[10px] text-slate-500 leading-relaxed pl-2 border-l-2 border-[#E5DEC4]">
+                                <div className="text-[10px] text-slate-500 leading-relaxed pl-2 border-l-2 border-[#6BCB77]">
                                   <strong className="text-slate-700">작품에서:</strong> {term.exampleInsideBook}
                                 </div>
                               </div>
@@ -823,10 +824,10 @@ export default function App() {
                       </div>
 
                       {/* Best Quotes and Character Building lessons */}
-                      <div className="bg-white rounded-3xl border border-[#E9E4D4] p-5 shadow-sm">
-                        <div className="flex items-center gap-2 mb-4 border-b border-[#ECE8D7] pb-3">
-                          <Award className="w-4 h-4 text-amber-500" />
-                          <h3 className="text-sm font-bold text-slate-900">가슴에 새기는 명구절</h3>
+                      <div className="bg-white rounded-2xl border-2 border-[#4D96FF] p-5 shadow-sm">
+                        <div className="flex items-center gap-2 mb-4 border-b-2 border-slate-100 pb-3">
+                          <span className="text-lg">🌟</span>
+                          <h3 className="text-sm font-black text-[#6C3428]">가슴에 새기는 명구절</h3>
                         </div>
 
                         <div className="flex flex-col gap-4">
@@ -834,18 +835,18 @@ export default function App() {
                             analysisResult.keyQuotes.map((item, idx) => (
                               <div key={idx} className="flex flex-col gap-2">
                                 {/* Bubble Quote */}
-                                <div className="bg-[#FAF9F5] border border-[#EEEAE1] rounded-2xl p-3.5 relative">
-                                  <span className="absolute -top-2 left-4 text-xs font-bold leading-none bg-orange-400 text-white px-2 py-0.5 rounded-full">
+                                <div className="bg-[#FAF9F5] border-2 border-slate-100 rounded-2xl p-4 relative">
+                                  <span className="absolute -top-2.5 left-4 text-[10px] font-extrabold leading-none bg-[#4D96FF] text-white px-2.5 py-1 rounded-full shadow-xs">
                                     {item.speaker || "명구절"}
                                   </span>
-                                  <p className="text-xs font-serif text-slate-800 leading-relaxed italic pt-1 text-justify">
+                                  <p className="text-xs font-serif text-slate-800 leading-relaxed italic pt-1 text-left">
                                     &ldquo;{item.quote}&rdquo;
                                   </p>
                                 </div>
                                 {/* Teacher Explanation block */}
                                 <div className="flex items-start gap-1.5 pl-2 text-xs text-slate-600">
-                                  <Smile className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
-                                  <p className="leading-snug bg-amber-50/40 p-2 rounded-xl text-amber-950">
+                                  <span className="mt-0.5">💡</span>
+                                  <p className="leading-snug bg-amber-50/50 p-2.5 rounded-xl text-[#6C3428] font-bold border border-[#FFD93D]/40">
                                     <strong>생각 한 모금:</strong> {item.lesson}
                                   </p>
                                 </div>
@@ -884,37 +885,37 @@ export default function App() {
                               setActiveTopicIndex(idx);
                               setFeedbackError(null);
                             }}
-                            className={`p-4 rounded-2xl border text-left flex flex-col justify-between cursor-pointer transition-all duration-200 relative ${
+                            className={`p-4 rounded-2xl border-2 text-left flex flex-col justify-between cursor-pointer transition-all duration-200 relative ${
                               isSelected
-                                ? 'bg-orange-500 border-orange-500 text-white shadow-md transform -translate-y-0.5'
-                                : 'bg-white border-[#EBE8DB] hover:bg-slate-50 hover:-translate-y-0.5 text-slate-800 shadow-2xs'
+                                ? 'bg-[#FF8400] border-[#6C3428] text-white shadow-md transform -translate-y-0.5'
+                                : 'bg-[#FFFBF2] border-[#FFD93D] hover:bg-white hover:-translate-y-0.5 text-slate-800 shadow-2xs'
                             }`}
                           >
                             <div>
                               <div className="flex justify-between items-center mb-1">
-                                <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
-                                  isSelected ? 'bg-white text-orange-600' : 'bg-orange-50 text-orange-600'
+                                <span className={`text-[9px] font-black px-2.5 py-1 rounded-full ${
+                                  isSelected ? 'bg-[#FFD93D] text-[#6C3428]' : 'bg-[#E8F9FD] text-[#2F86A6]'
                                 }`}>
-                                  토론 {idx + 1}
+                                  토론 주제 {idx + 1}
                                 </span>
                                 {tOpinions.length > 0 && (
-                                  <span className={`text-[9px] font-semibold flex items-center gap-1 ${
-                                    isSelected ? 'text-white' : 'text-slate-500'
+                                  <span className={`text-[9px] font-bold flex items-center gap-1 ${
+                                    isSelected ? 'text-[#FEF9EF]' : 'text-slate-500'
                                   }`}>
-                                    <MessageSquare className="w-3 h-3" />
-                                    {tOpinions.length}명 대화중
+                                    <MessageSquare className="w-3 h-3 text-[#FF5400]" />
+                                    {tOpinions.length}명 진행 중
                                   </span>
                                 )}
                               </div>
                               <h4 className={`text-xs md:text-sm font-black tracking-tight leading-tight lines-clamp-2 ${
-                                isSelected ? 'text-white' : 'text-slate-900'
+                                isSelected ? 'text-white' : 'text-[#6C3428]'
                               }`}>
                                 {topic.title}
                               </h4>
                             </div>
                             <div className="mt-3 flex items-center justify-between">
-                              <span className={`text-[10px] font-medium ${isSelected ? 'text-orange-200' : 'text-slate-400'}`}>
-                                자세히 보기
+                              <span className={`text-[10px] font-bold ${isSelected ? 'text-orange-100' : 'text-slate-400'}`}>
+                                자세히 공부하기
                               </span>
                               <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
                             </div>
@@ -924,7 +925,7 @@ export default function App() {
                     </div>
 
                     {/* LIVE ACTIVE OPERATOR PANEL */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white rounded-3xl border border-[#E9E4D4] p-5 md:p-6 shadow-sm">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white rounded-2xl border-b-8 border-r-8 border-[#E0E0E0] border-2 p-5 md:p-6 shadow-sm">
                       
                       {/* Left Block inside Card: Discussion Prompt Outline (7 columns) */}
                       <div className="lg:col-span-7 flex flex-col gap-4">
@@ -938,18 +939,18 @@ export default function App() {
                         </div>
 
                         {/* Story Context & Kid Experience bridge */}
-                        <div className="bg-amber-50/40 border border-amber-100 p-4 rounded-2xl">
-                          <span className="text-[10px] bg-amber-100 font-bold text-amber-800 px-2 py-0.5 rounded-full mb-1 inline-block">
+                        <div className="bg-[#FFFCEF] border-2 border-[#FFD93D] p-4 rounded-2xl">
+                          <span className="text-[10px] bg-[#FF8400] font-bold text-white px-2.5 py-0.5 rounded-full mb-1 inline-block">
                             어린이 일상 경험 유도
                           </span>
-                          <p className="text-xs text-amber-950 font-medium leading-relaxed">
+                          <p className="text-xs text-slate-800 font-bold leading-relaxed">
                             "{analysisResult.topics[activeTopicIndex].linkToExperience}"
                           </p>
                         </div>
 
                         {/* Starting & Consecutive Deconstructive Tail Questions (Toggled revealing state keeps classroom focus) */}
-                        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col gap-3">
-                          <span className="text-[10px] font-black tracking-wider text-slate-400 block uppercase">
+                        <div className="bg-[#F0F9FF] border-2 border-[#B9E9FF] rounded-2xl p-4 flex flex-col gap-3">
+                          <span className="text-[10px] font-black tracking-wider text-[#4D96FF] block uppercase">
                             꼬리에 꼬리를 무는 질문 연쇄 로드맵
                           </span>
 
@@ -965,28 +966,28 @@ export default function App() {
                             </div>
                             <button
                               onClick={() => handleSpeak(analysisResult.topics[activeTopicIndex].startingQuestion)}
-                              className="text-slate-400 hover:text-slate-700 ml-auto p-1"
+                              className="text-slate-400 hover:text-slate-705 ml-auto p-1 cursor-pointer"
                             >
                               <Volume2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
 
                           {analysisResult.topics[activeTopicIndex].tailQuestions.map((tailQ, tIdx) => (
-                            <div key={tIdx} className="flex items-start gap-2 bg-orange-50/50 border border-orange-100 p-3 rounded-xl">
-                              <span className="text-xs bg-orange-500 text-white font-bold w-5 h-5 rounded-md flex items-center justify-center shrink-0 animate-pulse">
+                            <div key={tIdx} className="flex items-start gap-2 bg-pink-50/50 border border-pink-100 p-3 rounded-xl">
+                              <span className="text-xs bg-pink-500 text-white font-bold w-5 h-5 rounded-md flex items-center justify-center shrink-0 animate-pulse">
                                 {tIdx + 1}
                               </span>
                               <div>
-                                <p className="text-[10px] text-orange-700 font-bold mb-1">
+                                <p className="text-[10px] text-pink-700 font-bold mb-1">
                                   {tIdx === 0 ? "2단계: 생각을 한 걸음 더! (꼬리 질문)" : "3단계: 가치 대립 확장하기 (연쇄 질문)"}
                                 </p>
-                                <p className="text-xs text-slate-800 font-bold leading-normal">
+                                <p className="text-xs text-[#2C3333] font-bold leading-normal">
                                   {tailQ}
                                 </p>
                               </div>
                               <button
                                 onClick={() => handleSpeak(tailQ)}
-                                className="text-slate-400 hover:text-slate-700 ml-auto p-1"
+                                className="text-slate-400 hover:text-pink-600 ml-auto p-1 cursor-pointer"
                               >
                                 <Volume2 className="w-3.5 h-3.5" />
                               </button>
@@ -995,16 +996,16 @@ export default function App() {
                         </div>
 
                         {/* Stances Assistance Helper Grid */}
-                        <div className="bg-[#FAF9F5] rounded-2xl border border-[#EEECE6] p-4">
-                          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-2">토론 관점 돋보기 가이드</span>
+                        <div className="bg-[#FFFCEF]/30 rounded-2xl border-2 border-slate-100 p-4">
+                          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-2">토론 찬반 생각 가이드</span>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed">
-                            <div className="bg-emerald-50/40 p-2.5 rounded-lg border border-emerald-100">
-                              <div className="text-emerald-700 font-bold mb-0.5">찬성측 시선</div>
-                              <p className="text-slate-600">{analysisResult.topics[activeTopicIndex].suggestedStances.positive}</p>
+                            <div className="bg-[#EFFFFA] p-3 rounded-xl border-2 border-[#6BCB77]/30">
+                              <div className="text-[#6BCB77] font-black mb-0.5">🟢 찬성측 시선</div>
+                              <p className="text-slate-600 font-bold">{analysisResult.topics[activeTopicIndex].suggestedStances.positive}</p>
                             </div>
-                            <div className="bg-rose-50/40 p-2.5 rounded-lg border border-rose-100">
-                              <div className="text-rose-700 font-bold mb-0.5">반대측 시선</div>
-                              <p className="text-slate-600">{analysisResult.topics[activeTopicIndex].suggestedStances.negative}</p>
+                            <div className="bg-[#FFF0F0] p-3 rounded-xl border-2 border-[#FF6B6B]/30">
+                              <div className="text-[#FF6B6B] font-black mb-0.5">🔴 반대측 시선</div>
+                              <p className="text-slate-600 font-bold">{analysisResult.topics[activeTopicIndex].suggestedStances.negative}</p>
                             </div>
                           </div>
                         </div>
@@ -1017,44 +1018,44 @@ export default function App() {
                             <Users className="w-3.5 h-3.5 text-orange-500" />
                             학급 의견 수집기
                           </h4>
-                          <span className="text-[10px] bg-slate-900 text-white font-mono px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] bg-[#6C3428] text-white font-mono px-2.5 py-0.5 rounded-full">
                             총 {activeTopicOpinions.length}명 참가
                           </span>
                         </div>
 
                         {/* Stance chart layout */}
                         {activeTopicOpinions.length > 0 && (
-                          <div className="bg-slate-50 rounded-2xl p-3 border border-slate-200/50 flex items-center justify-around text-center text-[10px] font-bold">
+                          <div className="bg-[#FFFCEF]/50 rounded-2xl p-3.5 border-2 border-[#FFD93D]/40 flex items-center justify-around text-center text-[10px] font-bold">
                             <div>
-                              <div className="text-emerald-600 font-black text-xs">{stats.positive}</div>
-                              <div className="text-slate-400">네! (찬성)</div>
+                              <div className="text-[#6BCB77] font-black text-xs">{stats.positive}명</div>
+                              <div className="text-slate-500 font-bold">네! (찬성)</div>
                             </div>
-                            <div className="h-4 w-px bg-slate-200"></div>
+                            <div className="h-5 w-0.5 bg-[#FFD93D]/30"></div>
                             <div>
-                              <div className="text-rose-600 font-black text-xs">{stats.negative}</div>
-                              <div className="text-slate-400">아니오! (반대)</div>
+                              <div className="text-[#FF6B6B] font-black text-xs">{stats.negative}명</div>
+                              <div className="text-slate-500 font-bold">아니오! (반대)</div>
                             </div>
-                            <div className="h-4 w-px bg-slate-200"></div>
+                            <div className="h-5 w-0.5 bg-[#FFD93D]/30"></div>
                             <div>
-                              <div className="text-indigo-600 font-black text-xs">{stats.neutral}</div>
-                              <div className="text-slate-400">더 고민돼요</div>
+                              <div className="text-[#4D96FF] font-black text-xs">{stats.neutral}명</div>
+                              <div className="text-slate-500 font-bold">더 고민돼요</div>
                             </div>
                           </div>
                         )}
 
                         {/* Input Opinion Form */}
-                        <form onSubmit={handleAddOpinion} className="flex flex-col gap-2.5 bg-slate-50 border border-slate-100 p-3.5 rounded-2xl">
+                        <form onSubmit={handleAddOpinion} className="flex flex-col gap-2.5 bg-[#FEF9EF]/80 border-2 border-slate-100 p-3.5 rounded-2xl">
                           <div className="grid grid-cols-2 gap-2">
                             <input
                               type="text"
                               required
-                              className="text-xs border border-slate-200 rounded-xl p-2 bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                              className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-white focus:outline-none focus:border-[#FF5400] font-bold"
                               placeholder="어린이 이름"
                               value={studentNameInput}
                               onChange={(e) => setStudentNameInput(e.target.value)}
                             />
                             <select
-                              className="text-xs border border-slate-200 rounded-xl p-2 bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                              className="text-xs border-2 border-slate-200 rounded-xl p-2.5 bg-white focus:outline-none focus:border-[#FF5400] font-bold"
                               value={stanceChoice}
                               onChange={(e) => setStanceChoice(e.target.value as any)}
                             >
@@ -1064,18 +1065,18 @@ export default function App() {
                             </select>
                           </div>
                           
-                          <div className="flex gap-1.5 focus-within:ring-1 focus-within:ring-orange-500 rounded-xl overflow-hidden bg-white border border-slate-200 p-1">
+                          <div className="flex gap-1.5 focus-within:border-[#FF5400] rounded-xl overflow-hidden bg-white border-2 border-slate-200 p-1">
                             <input
                               type="text"
                               required
-                              className="flex-1 text-xs p-2 focus:outline-none bg-transparent"
-                              placeholder="의견을 적어주세요... (예: 왕자는 외로운 마음을..."
+                              className="flex-1 text-xs p-2 focus:outline-none bg-transparent font-bold text-slate-800"
+                              placeholder="어린이의 생각을 적어주세요!"
                               value={opinionInput}
                               onChange={(e) => setOpinionInput(e.target.value)}
                             />
                             <button
                               type="submit"
-                              className="bg-slate-900 hover:bg-orange-500 transition-colors text-white px-3 py-1.5 rounded-lg text-xs font-bold"
+                              className="bg-[#FF8400] hover:bg-[#e07500] hover:scale-105 active:scale-95 duration-100 text-white px-4 py-1.5 rounded-lg text-xs font-black cursor-pointer"
                             >
                               등록
                             </button>
@@ -1083,44 +1084,44 @@ export default function App() {
                         </form>
 
                         {/* Dynamic Opinions interactive scrollbox */}
-                        <div className="flex-1 flex flex-col gap-2 max-h-52 overflow-y-auto pr-1">
+                        <div className="flex-1 flex flex-col gap-2 max-h-52 overflow-y-auto pr-1 custom-scrollbar">
                           {activeTopicOpinions.length > 0 ? (
                             activeTopicOpinions.map((op) => (
                               <div
                                 key={op.id}
-                                className="bg-white border border-slate-200/80 p-3 rounded-xl flex flex-col gap-2 relative group hover:border-slate-300 transition-all shadow-3xs"
+                                className="bg-white border-2 border-slate-100 p-3 rounded-2xl flex flex-col gap-2 relative group hover:border-[#FF8400] transition-all shadow-3xs"
                               >
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-1.5">
-                                    <span className="text-xs font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded-md">
-                                      {op.studentName}
+                                    <span className="text-xs font-black text-[#6C3428] bg-[#FFD93D] px-2 py-0.5 rounded-full">
+                                      {op.studentName} 어린이
                                     </span>
-                                    <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full ${
+                                    <span className={`text-[9px] font-black px-2 py-0.5 rounded-full ${
                                       op.stance === 'positive' 
-                                        ? 'bg-emerald-50 text-emerald-700' 
+                                        ? 'bg-[#EFFFFA] text-[#6BCB77]' 
                                         : op.stance === 'negative' 
-                                        ? 'bg-rose-50 text-rose-700'
-                                        : 'bg-indigo-50 text-indigo-700'
+                                        ? 'bg-[#FFF0F0] text-[#FF6B6B]'
+                                        : 'bg-[#F0F4FF] text-[#4D96FF]'
                                     }`}>
                                       {op.stance === 'positive' ? '찬성' : op.stance === 'negative' ? '반대' : '중립'}
                                     </span>
                                   </div>
                                   <button
                                     onClick={() => handleRemoveOpinion(op.id)}
-                                    className="opacity-10 md:opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-600 transition-all p-1"
+                                    className="opacity-10 md:opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-600 transition-all p-1 cursor-pointer"
                                   >
                                     <Trash2 className="w-3.5 h-3.5" />
                                   </button>
                                 </div>
-                                <p className="text-xs text-slate-600 leading-normal font-serif italic pl-0.5">
+                                <p className="text-xs text-slate-700 leading-normal font-serif pl-0.5">
                                   &ldquo;{op.opinion}&rdquo;
                                 </p>
                               </div>
                             ))
                           ) : (
-                            <div className="text-center py-10 text-slate-400 text-xs border border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center gap-1">
-                              <Smile className="w-6 h-6 text-slate-300" />
-                              어린이들의 흥미롭고 솔직한 첫 의견을<br />위 폼에서 등록해 주세요!
+                            <div className="text-center py-10 text-slate-400 text-xs border-2 border-dashed border-slate-200 rounded-2xl flex flex-col items-center justify-center gap-1.5">
+                              <span className="text-2xl animate-pulse">🙋</span>
+                              <span className="font-bold text-[#6C3428]/60">어린이들의 재밌고 솔직한 첫 의견을<br />위 빈칸에 등록해 주세요!</span>
                             </div>
                           )}
                         </div>
@@ -1129,21 +1130,21 @@ export default function App() {
                         {activeTopicOpinions.length > 0 && (
                           <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
                             {feedbackError && (
-                              <div className="text-[10px] bg-red-50 text-red-700 p-2 rounded-lg leading-tight">
+                              <div className="text-[10px] bg-red-50 text-red-700 p-2 rounded-lg leading-tight font-bold">
                                 {feedbackError}
                               </div>
                             )}
                             <button
                               onClick={handleGetClassFeedback}
                               disabled={feedbackLoading}
-                              className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all ${
+                              className={`w-full py-3.5 px-3 rounded-2xl font-black text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
                                 feedbackLoading
-                                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                                  : 'bg-orange-50 hover:bg-orange-100 active:bg-orange-200 text-orange-900 border border-orange-200 shadow-2xs'
+                                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed border-none'
+                                  : 'bg-[#FF8400] hover:bg-[#e07500] text-white border-b-4 border-[#6C3428] shadow-md'
                               }`}
                             >
-                              <Sparkles className="w-3.5 h-3.5 text-orange-600" />
-                              {feedbackLoading ? "의견 종합 중..." : "Gemini 토론 총평받기"}
+                              <Sparkles className="w-3.5 h-3.5" />
+                              {feedbackLoading ? "의견들을 모아서 생각 주스를 빚고 있어요..." : "Gemini 토론 총평받기"}
                             </button>
                           </div>
                         )}
@@ -1156,42 +1157,42 @@ export default function App() {
                       <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-slate-900 text-white rounded-3xl p-6 shadow-md flex flex-col gap-4 relative overflow-hidden"
+                        className="bg-[#6C3428] text-white rounded-2xl border-4 border-[#FFD93D] p-6 shadow-md flex flex-col gap-4 relative overflow-hidden"
                       >
                         <div className="absolute right-0 top-0 opacity-10 pointer-events-none translate-x-1/10 -translate-y-1/10 scale-150">
                           <Award className="w-48 h-48 text-white" />
                         </div>
                         
                         <div className="flex items-center gap-2 border-b border-white/10 pb-3">
-                          <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center text-orange-400">
-                            <Sparkles className="w-4 h-4 animate-spin-slow" />
+                          <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-[#FFD93D]">
+                            <Sparkles className="w-4 h-4 animate-bounce" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-white">Gemini 토론 사회 코치 총평</h4>
-                            <p className="text-[10px] text-orange-300">학생들의 생각이 한 번 더 멋지게 날개 돋쳤습니다!</p>
+                            <h4 className="text-sm font-black text-[#FFD93D]">Gemini 토론 사회 코치 총평</h4>
+                            <p className="text-[10px] text-orange-200 font-bold">학생들의 생각이 한 번 더 멋지게 날개 돋쳤습니다!</p>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-light leading-relaxed">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold leading-relaxed">
                           
                           {/* Critique Summary */}
-                          <div className="bg-white/5 border border-white/5 p-4 rounded-2xl flex flex-col gap-2">
-                            <h5 className="font-bold text-orange-200 flex items-center gap-1">
-                              <span className="w-1.5 h-3 bg-orange-400 rounded-sm"></span>
+                          <div className="bg-white/10 border border-white/5 p-4 rounded-2xl flex flex-col gap-2">
+                            <h5 className="font-extrabold text-[#FFD93D] flex items-center gap-1">
+                              <span className="w-1.5 h-3 bg-white/20 rounded-sm"></span>
                               의견 구조 요약
                             </h5>
-                            <p className="text-slate-300 text-xs">
+                            <p className="text-orange-100 text-xs">
                               {topicFeedback[analysisResult.topics[activeTopicIndex].id].summaryOfOpinions}
                             </p>
                           </div>
 
                           {/* Classroom Praise */}
-                          <div className="bg-emerald-950/40 border border-emerald-900/30 p-4 rounded-2xl flex flex-col gap-2">
-                            <h5 className="font-bold text-emerald-300 flex items-center gap-1">
-                              <span className="w-1.5 h-3 bg-emerald-400 rounded-sm"></span>
+                          <div className="bg-[#61B15A] border border-white/10 p-4 rounded-2xl flex flex-col gap-2">
+                            <h5 className="font-extrabold text-[#FFD93D] flex items-center gap-1">
+                              <span className="text-xs">🎉</span>
                               칭찬의 속삭임
                             </h5>
-                            <p className="text-emerald-100 italic">
+                            <p className="text-white italic">
                               &ldquo;{topicFeedback[analysisResult.topics[activeTopicIndex].id].praise}&rdquo;
                             </p>
                           </div>
@@ -1200,7 +1201,7 @@ export default function App() {
 
                         {/* Deeper consecutive chain prompt */}
                         <div className="bg-white/10 p-4 rounded-2xl border border-white/10 mt-2">
-                          <span className="text-[10px] text-amber-300 font-extrabold uppercase tracking-wide block mb-1">
+                          <span className="text-[10px] text-[#FFD93D] font-extrabold uppercase tracking-wide block mb-1">
                             토론 심화를 위한 한걸음 다음 연쇄 발문 
                           </span>
                           <p className="text-xs font-bold text-white leading-relaxed">
@@ -1209,7 +1210,7 @@ export default function App() {
                           <div className="mt-2.5 flex justify-end gap-2">
                             <button
                               onClick={() => handleSpeak(topicFeedback[analysisResult.topics[activeTopicIndex].id].nextDeeperQuestion)}
-                              className="bg-white text-slate-900 font-bold px-3 py-1.5 rounded-xl text-[10px] flex items-center gap-1 hover:bg-slate-100"
+                              className="bg-[#FFD93D] text-[#6C3428] font-black px-4 py-2 rounded-full text-[10px] flex items-center gap-1 hover:scale-105 duration-100 cursor-pointer"
                             >
                               <Volume2 className="w-3 h-3" />
                               질문 음성 출력
@@ -1225,33 +1226,33 @@ export default function App() {
               </motion.div>
             ) : (
               /* WELCOME STATE DISPLAY (Initial layout guide) */
-              <div className="bg-white rounded-3xl border border-[#E9E4D4] p-12 text-center shadow-xs flex flex-col items-center justify-center min-h-[500px]">
-                <div className="w-16 h-16 bg-[#FAF8F2] rounded-full flex items-center justify-center text-orange-500 mb-6 border border-[#ECE8D7] shadow-3xs">
-                  <BookOpen className="w-7 h-7" />
+              <div className="bg-white rounded-2xl border-b-8 border-r-8 border-[#E0E0E0] border-2 p-12 text-center flex flex-col items-center justify-center min-h-[500px]">
+                <div className="w-20 h-20 bg-[#FFFCEF] rounded-2xl flex items-center justify-center text-[#FF8400] mb-6 border-b-4 border-r-4 border-[#FF8400] border-2 shadow-sm transform -rotate-3">
+                  <span className="text-3xl">💡</span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2 font-serif">
+                <h3 className="text-xl font-black text-[#6C3428] mb-2 font-serif">
                   소중한 상상력과 논리가 배양되는 고전독서 교실
                 </h3>
-                <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-6">
-                  오늘 토론하기 원하는 고전 명작을 왼쪽 메뉴에서 선택하고 <strong>'분석 &amp; 토론 생성'</strong> 버튼을 클릭하십시오.<br />
-                  Gemini API가 1000자 요약, 가발 단어 카드, 꼬리에 꼬리를 무는 교육 딜레마를 정성껏 설계해 드릴 것입니다.
+                <p className="text-xs text-slate-600 max-w-sm leading-relaxed mb-6 font-bold">
+                  오늘 토론하기 원하는 고전 명작을 왼쪽 메뉴에서 선택하고 <span className="text-[#FF8400] underline">'분석 &amp; 토론 생성'</span> 버튼을 클릭해보세요!<br />
+                  Gemini API가 1000자 요약, 가슴뛰는 어휘 카드, 꼬리에 꼬리를 무는 배움 딜레마들을 정성껏 설계해 줄 거예요.
                 </p>
 
-                <div className="flex gap-2 max-w-md w-full justify-center">
-                  <div className="bg-[#FAF9F5] border border-[#EDEAE1] p-4 rounded-2xl flex-1 text-left">
-                    <span className="text-[10px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded-full block w-max mb-1.5">
-                      프리셋 활용법
+                <div className="flex flex-col sm:flex-row gap-4 max-w-lg w-full justify-center">
+                  <div className="bg-[#FFFCEF] border-2 border-[#FFD93D] p-5 rounded-2xl flex-1 text-left relative overflow-hidden">
+                    <span className="text-[10px] bg-[#6C3428] text-white font-extrabold px-2.5 py-1 rounded-full block w-max mb-2">
+                      명작 프리셋 방법 📚
                     </span>
-                    <p className="text-[11px] text-slate-600 leading-snug">
-                      어린 왕자, 홍길동전 등 아동 클래식 5선을 통해 교실 토론 기능과 총평 기입을 즉석에서 검증할 수 있습니다.
+                    <p className="text-[11px] text-[#6C3428] leading-relaxed font-bold">
+                      어린 왕자, 홍길동전 등 아동 클래식 고전 5종을 통해 실시간 학급 토론 교실과 요약을 미리 검증할 수 있습니다.
                     </p>
                   </div>
-                  <div className="bg-[#FAF9F5] border border-[#EDEAE1] p-4 rounded-2xl flex-1 text-left">
-                    <span className="text-[10px] bg-orange-500 text-white font-bold px-2 py-0.5 rounded-full block w-max mb-1.5">
-                      PDF/텍스트 활용법
+                  <div className="bg-[#F0F9FF] border-2 border-[#B9E9FF] p-5 rounded-2xl flex-1 text-left relative overflow-hidden">
+                    <span className="text-[10px] bg-[#4D96FF] text-white font-extrabold px-2.5 py-1 rounded-full block w-max mb-2">
+                      PDF/텍스트 방법 📂
                     </span>
-                    <p className="text-[11px] text-slate-600 leading-snug">
-                      학교 도서 교재 PDF 파일이나 인터넷 텍스트를 그대로 올려서, 학급 교과서 맞춤 지도를 완성해 보세요.
+                    <p className="text-[11px] text-[#2F86A6] leading-relaxed font-bold">
+                      학교 도서 교재 PDF 파일이나 인터넷 텍스트를 그대로 올려서, 우리 학급만의 맞춤 질문지를 바로 완성합니다.
                     </p>
                   </div>
                 </div>
@@ -1263,14 +1264,15 @@ export default function App() {
       </main>
 
       {/* Footer credits and information */}
-      <footer className="bg-white border-t border-[#E6DEC4] py-6 px-6 mt-12 text-center text-xs text-slate-400">
+      <footer className="bg-[#FFFCEF] border-t-4 border-[#FFD93D] py-6 px-6 mt-12 text-center text-xs text-[#6C3428] font-bold">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>&copy; {new Date().getFullYear()} 고전독서 토론 도우미 &bull; Designed elegantly for Korean Elementary School Classrooms</p>
+          <p>&copy; {new Date().getFullYear()} 고전 꼬마 친구 &bull; Designed elegantly for Fun Elementary School Classrooms</p>
           <div className="flex gap-4">
-            <span className="text-[#94A3B8]">독서기반 인성·비판적 사고력 교육 플랫폼</span>
+            <span className="text-[#FF8400]">독서기반 인성·비판적 사고력 교육 플랫폼</span>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+
