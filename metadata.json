@@ -1,0 +1,6 @@
+{
+  "name": "고전독서 토론 도우미",
+  "description": "고전 도서의 지정 부분을 요약하고 초등학생 수준에서 경험을 끌어낼 수 있는 연쇄식 토의토론 주제를 추천해 줍니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
